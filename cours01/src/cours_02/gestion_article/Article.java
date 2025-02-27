@@ -50,7 +50,14 @@ public class Article {
     // méthode equals
     // 4) tout objet est capable de dire s'il est ou non
     // égal à un autre
+   //public boolean equals(Article article1)
+    //{
+        // si la règle de gestion indique que deux articles ayant le même numéro doivent
+        // être considéré comme indentique
+        // on peut ne tester que l'égalité du numéro
 
+     //   return (this.num == article1.num);
+    //}
 
     // ======================================================
     //Méthodes nécessares au traitement de l'article

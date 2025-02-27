@@ -18,5 +18,22 @@ public class DemoProgramme {
         article.setPrix(1330.5);
         article.vendre(2);
         System.out.println(article);
+
+        if (article == article2){
+        System.out.println("Vrai");
+        }
+        else
+        {
+            System.out.println("Faux");
+        }
+
+        if (article.equals(article2))
+        {
+            System.out.println("Vrai");
+        }
+        else
+        {
+            System.out.println("Faux");
+        }
     }
 }
