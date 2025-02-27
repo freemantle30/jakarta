@@ -33,7 +33,20 @@ public class Article {
         this.stock = stock;
     }
 
+    public Article(int num, String nom){
+        this.num = num;
+        this.nom = nom;
+    }
 
+    // responsabilité importante de toutes les classes
+    // =================================
+    // 3) la méthode toString() : retourne le contenu de l'instance
+    // sous forme d'un string
+    public String toString()
+    {
+
+        return "Article num: " + num + ", Nom: " + nom + ", prix: " + prix + ", stock: " + stock;
+    }
 
 
 }
