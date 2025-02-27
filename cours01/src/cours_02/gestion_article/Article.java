@@ -44,9 +44,33 @@ public class Article {
     // sous forme d'un string
     public String toString()
     {
-
         return "Article num: " + num + ", Nom: " + nom + ", prix: " + prix + ", stock: " + stock;
     }
 
+    // méthode equals TODO
 
+    //Méthodes nécessares au traitement de l'article
+
+    // Définition de Getter : méthodes d'accès aux attributs
+    public int getNum() { return num; }
+    public String getNom() { return nom; }
+    public double getPrix() { return prix; }
+    public int getStock() { return stock; }
+
+    // Définition de Setter : méthode de miste à jour des attributs
+    // ==> permettent de modifier les valeurs des attiburs
+
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+    public void setPrix(double prix) {
+        this.prix = prix;
+    }
+    public void achete(int nb) {
+        this.stock += nb;
+    }
+    public void vendre(int nb) {
+        this.stock -= nb;
+    }
 }
