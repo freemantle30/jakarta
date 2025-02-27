@@ -47,8 +47,12 @@ public class Article {
         return "Article num: " + num + ", Nom: " + nom + ", prix: " + prix + ", stock: " + stock;
     }
 
-    // méthode equals TODO
+    // méthode equals
+    // 4) tout objet est capable de dire s'il est ou non
+    // égal à un autre
 
+
+    // ======================================================
     //Méthodes nécessares au traitement de l'article
 
     // Définition de Getter : méthodes d'accès aux attributs

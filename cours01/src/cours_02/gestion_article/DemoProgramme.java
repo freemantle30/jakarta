@@ -14,5 +14,9 @@ public class DemoProgramme {
 
        // ce systemoutprintln va chercher le ToString
         System.out.println(article);
+        article.achete(5);
+        article.setPrix(1330.5);
+        article.vendre(2);
+        System.out.println(article);
     }
 }
