@@ -26,7 +26,12 @@ public class Article {
     // porte le même nom que la classe
     // son code est exécuté au moment de la création d'une instance (new)
     // - responsabilité : initialiser l'instance, en particulier ses attributs
-    public Article(int num, String nom, double prix, int stock) {}
+    public Article(int num, String nom, double prix, int stock) {
+        this.num = num;
+        this.nom = nom;
+        this.prix = prix;
+        this.stock = stock;
+    }
 
 
 
