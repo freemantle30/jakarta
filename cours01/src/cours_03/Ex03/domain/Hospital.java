@@ -8,6 +8,7 @@ public class Hospital {
     private String canton;
     private Integer nbMaxBeds;
     private int nbHospitalizedPatients;
+    private double solde;
 
 
     /**
@@ -40,6 +41,10 @@ public class Hospital {
     public void setNBHospitalizedPatients(int nbDePatientsHospitalized) {
         // on pourrait créer une exception -> on va voir cela plus tard.
         this.nbHospitalizedPatients = nbDePatientsHospitalized;
+    }
+
+    public void setAccountValue(double solde){
+        this.solde = solde;
     }
 
     /**
@@ -93,5 +98,11 @@ public class Hospital {
         return h1.getId() == this.getId();
     }
 
+    public boolean hasDebt(){
+        return !(solde < 0);
+    }
 
+    public boolean plusPetitBudget(Hospital hospital){
+        return this.solde < hospital.solde;
+    }
 }

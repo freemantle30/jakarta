@@ -1,4 +1,5 @@
 package cours_03.Ex03.managers;
+import cours_03.Ex03.controllers.DisplayController;
 import cours_03.Ex03.domain.Hospital;
 
 import java.util.*;
@@ -6,30 +7,15 @@ import java.util.*;
 public class HospitalManager {
     static ArrayList<Hospital> hospitals = new ArrayList<>();
 
-    /**
-     * Constructor for the HospitalManager class
-     */
-    public HospitalManager() {
-        hospitals = new ArrayList<>();
-    }
 
-    /**
-     * Add hospital to the array list
-     * @param hospital
-     */
-    public void addHospital(Hospital hospital) {
-        hospitals.add(hospital);
-    }
 
-    public String displayHospitals(){
-        String hospitalList = "";
+    public static void displayHospitals(){
         for (Hospital hospital : hospitals) {
-            hospitalList += hospital.toString() + "\n";
+           System.out.println(hospital);
         }
-        return hospitalList;
     }
 
-    public int sumAvailableBeds(){
+    public static int sumAvailableBeds(ArrayList<Hospital> hospitals) {
         int sumAvailableBeds = 0;
         for (Hospital hospital : hospitals) {
             sumAvailableBeds += hospital.calculateLitsVide();
@@ -37,30 +23,64 @@ public class HospitalManager {
         return sumAvailableBeds;
     }
 
-    public TreeMap<hospitalName,averageBeds> averageBeds(){
-        for (Hospital hospital : hospitals) {
-            Map.Entry
-        }
-        return averageBeds/hospitals.size();
-   }
-
-    public boolean isIn(Hospital hospital) {
-        return hospitals.contains(hospital);
+    public static float averageBeds(ArrayList<Hospital> hospitals){
+        return  sumAvailableBeds(hospitals) /hospitals.size();
     }
 
-    public boolean isAllIn(HashSet<Hospital> h1, HashSet<Hospital> h2) {
-        for (Hospital hospital : h1) {
-            if (!h2.contains(hospital)) {
-                return false;
+
+
+    public static boolean isIn(Hospital h, ArrayList<Hospital> hospitals) {
+        return hospitals.contains(h);
+    }
+
+    public boolean areAllIn(ArrayList<Hospital> hospitals1, ArrayList<Hospital> hospitals2) {
+       boolean flag = true;
+       for (Hospital h : hospitals1) {
+           flag = hospitals2.contains(h);
+           // on casse la boucle
+           if (!flag) return flag;
+       }
+       return flag;
+    }
+
+    public static ArrayList<Hospital> existDebt(ArrayList<Hospital> hospitals) {
+        ArrayList<Hospital> hospitalsInDebt = new ArrayList<>();
+        for (Hospital h : hospitals) {
+            if (h.hasDebt()){
+                hospitalsInDebt.add(h);
             }
         }
+        return hospitalsInDebt;
+    }
+
+    public static ArrayList<Hospital> getHospitals() {
+        return hospitals;
+    }
+
+    public static Hospital thePooretHospital(ArrayList<Hospital> hospitals) {
+        Hospital thePoorest = hospitals.get(0);
+        for (int i = 1; i < hospitals.size(); i++) {
+            if (hospitals.get(i).plusPetitBudget(thePoorest)){
+                thePoorest = hospitals.get(i);
+            }
+        }
+        return thePoorest;
+    }
+
+    public static boolean isIn(ArrayList<Hospital> hospitals, Hospital h) {
         return true;
     }
 
+//    public static ArrayList<Hospital> getHospitalsFromCanton(ArrayList<Hospital> hospitals, String canton) {
+//        ArrayList<Hospital> hospitalsFromCanton = new ArrayList<>();
+//        for (Hospital h : hospitals) {
+//            if (canton != null && h.get)
+//        }
+//    }
 
     public static void launch() {
         // Initialisation de la classe manager
-        HospitalManager manager = new HospitalManager();
+
 
         // Initialisation des hôpitaux
         Hospital hug = new Hospital(1,"Hôpitaux universitaires de Genève","GE",2083);
@@ -77,42 +97,27 @@ public class HospitalManager {
         hvsp.setNBHospitalizedPatients(296);
 
         // ajout des hopitaux dans l'array list
-        manager.addHospital(hug);
-        manager.addHospital(chuv);
-        manager.addHospital(hfr);
-        manager.addHospital(rhne);
-        manager.addHospital(hvsp);
+        hospitals.add(hug);
+        hospitals.add(chuv);
+        hospitals.add(hfr);
+        hospitals.add(rhne);
+        hospitals.add(hvsp);
 
 
 
         // initialiser
-        hug.setBudget();
-        chuv.setBudget();
-        hfr.setBudget();
-        // output ex 3
-//        System.out.println(hug);
-//        System.out.println("===========================================");
-//        System.out.println(chuv);
-//        System.out.println("===========================================");
-//        System.out.println(hug.getEmptiestHospital(chuv,hfr,rhne,hvsp));
-//        System.out.println("===========================================");
-//        System.out.println("Est ce que le chuv et les hugs sont le même hôpital ? :");
-//        System.out.print(hug.equals(chuv));
+        hug.setAccountValue(-22203.5);
+        chuv.setAccountValue(222.4);
+        hfr.setAccountValue(10000.3);
+        rhne.setAccountValue(-1003.5);
+        hvsp.setAccountValue(5500);
 
-        // output ex 5
-        System.out.println("===========================================");
-        System.out.println(manager.displayHospitals());
-        System.out.println("Il y a "+manager.sumAvailableBeds()+" lits disponibles dans notre réseau hospitalier");
-        System.out.println(manager.averageBeds());
-        System.out.println("L'hopital hug est-il notre application ? "+manager.isIn(hug));
-        //System.out.println(manager.hasDebt());
-        //System.out.println(manager.plusPauvre);
-        HashSet<Hospital> reseau2 = new HashSet<>();
-        HashSet<Hospital> notreReseau = new HashSet<>(manager.hospitals);
-        reseau2.add(rhne);
-        reseau2.add(hvsp);
+       // isIn(new Hospital(9),hospitals);
 
-        System.out.println(manager.isAllIn(notreReseau,reseau2));
+        DisplayController.display(hug,chuv);
+
+
+
     }
 
 }
