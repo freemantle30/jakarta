@@ -61,27 +61,6 @@ public class Hospital {
     }
 
     /**
-     *
-     * @param h1 Hospital -> 1er hopital
-     * @param h2 Hospital -> 2e hopital
-     * @param h3 Hospital -> 3e hopital
-     * @param h4 Hospital -> 4e hopital
-     * @return String -> Message annonçant l'hopital ayant le plus de lits disponibles parmi 5
-     */
-    public String getEmptiestHospital(Hospital h1, Hospital h2, Hospital h3, Hospital h4) {
-        Hospital[] hospitals = {this,h1,h2,h3,h4};
-        int litsVide = 0;
-        Hospital lePlusDeLits = null;
-        for (Hospital hosto : hospitals) {
-            if (hosto.calculateLitsVide() >= litsVide) {
-                lePlusDeLits = hosto;
-                litsVide = hosto.calculateLitsVide();
-            }
-        }
-        return  "L'hôpital avec le plus de lits vide est " + lePlusDeLits.name + "\nIl y a " + lePlusDeLits.calculateLitsVide() + " lits vides. " ;
-    }
-
-    /**
      *  Calcule le nombre de lits vide dans un hopital
      * @return int -> le nombre
      */
