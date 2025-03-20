@@ -1,22 +1,28 @@
-package cours_03.Ex03;
+package cours_03.Ex03.domain;
 
-import java.util.Objects;
+import org.jetbrains.annotations.NotNull;
 
 public class Hospital {
-    private final int id;
+    private Integer id;
     private String name;
     private String canton;
-    private int nombreDeLitsTotal;
-    private int nombreDePatientsHospitalized;
+    private Integer nbMaxBeds;
+    private int nbHospitalizedPatients;
 
 
-    // Le constructeur
-    public Hospital(int id, String name, String canton, int nombreDeLitsTotal) {
+    /**
+     * Default constructor
+     * @param id identifier
+     * @param name name of the hospital
+     * @param canton canton in which the hospital is located
+     * @param nbMaxBeds capacity of the hospital
+     */
+    public Hospital(int id, String name, String canton, int nbMaxBeds) {
         this.id = id;
         this.name = name;
         this.canton = canton;
-        this.nombreDeLitsTotal = nombreDeLitsTotal;
-        this.nombreDePatientsHospitalized = 0;
+        this.nbMaxBeds = nbMaxBeds;
+        this.nbHospitalizedPatients = 0;
     }
 
     /**
@@ -29,10 +35,11 @@ public class Hospital {
 
     /**
      *
-     * @param nombreDePatientsHospitalized int -> le nombre de patients hospitalisés actuellement
+     * @param nbDePatientsHospitalized int -> le nombre de patients hospitalisés actuellement
      */
-    public void setNBHospitalizedPatients(int nombreDePatientsHospitalized) {
-        this.nombreDePatientsHospitalized = nombreDePatientsHospitalized;
+    public void setNBHospitalizedPatients(int nbDePatientsHospitalized) {
+        // on pourrait créer une exception -> on va voir cela plus tard.
+        this.nbHospitalizedPatients = nbDePatientsHospitalized;
     }
 
     /**
@@ -41,16 +48,11 @@ public class Hospital {
      */
     @Override
     public String toString(){
-        if (Objects.equals(canton, "GE"))
-        {
-            return "Cet Hôpital est Genevois. \n"
-                    + this.name + " est représenté par l'ID " + this.id + ", il possède " + this.nombreDeLitsTotal + " lits au total. \n"
-                    + this.nombreDePatientsHospitalized + " patients sont hospitalisés actuellement";
-        }
-        else{
-            return this.name + " est représenté par l'ID " + this.id + ", il possède " + this.nombreDeLitsTotal + " lits au total. \n"
-                    +"Il est situé dans le canton " +this.canton +","+ this.nombreDePatientsHospitalized + " patients sont hospitalisés actuellement";
-        }
+
+        return this.name + " est représenté par l'ID " + this.id + ", il possède " + this.nbMaxBeds + " lits au total. \n"
+                +"Il est situé dans le canton " +this.canton +","+ this.nbHospitalizedPatients +
+                " patients sont hospitalisés actuellement.\n";
+
     }
 
     /**
@@ -79,15 +81,17 @@ public class Hospital {
      * @return int -> le nombre
      */
     public int calculateLitsVide(){
-        return nombreDeLitsTotal -nombreDePatientsHospitalized;
+        return nbMaxBeds - nbHospitalizedPatients;
     }
 
     /**
      *  Compare deux instances de la classe Hospital
-     * @param h1
+     * @param h1 une instance de la classe Hospital
      * @return boolean
      */
-    public boolean equals(@org.jetbrains.annotations.NotNull Hospital h1) {
+    public boolean equals(@NotNull Hospital h1) {
         return h1.getId() == this.getId();
     }
+
+
 }
